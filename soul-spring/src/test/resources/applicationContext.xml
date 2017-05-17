@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/aop
+           http://www.springframework.org/schema/aop/spring-aop.xsd
+       ">
+
+	<bean id="" class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator" >
+	
+	</bean>
+
+	<bean id="simple" class="com.cihunknown.spring.beans.SimpleBean" ></bean>
+
+
+	<!--引入Interface Aop XML 配置文件 
+	<import resource="com/cihunknown/spring/aop/simple/implAspact.xml"/>-->
+	
+	<!--引入Annotation Aop XML 配置文件 
+	<import resource="com/cihunknown/spring/aop/simple/annotationAspact.xml"/> -->
+
+	<!--引入Schema  Aop  XML  配置文件 
+	<import resource="com/cihunknown/spring/aop/simple/xmlAspact.xml"/>-->
+	
+</beans>

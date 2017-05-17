@@ -1,0 +1,75 @@
+create database studentdb;
+GRANT all on studentdb.* to test@127.0.0.1 IDENTIFIED BY 'test';
+use studentdb;
+
+create table student_basic(
+	id INT PRIMARY KEY NOT NULL UNIQUE AUTO_INCREMENT,
+	name VARCHAR(50) NOT NULL UNIQUE,
+	age INT(3) UNSIGNED NOT NULL,
+	score DOUBLE(5,2) UNSIGNED NOT NULL,
+	description VARCHAR(255)
+);
+
+create table student_address(
+	id INT PRIMARY KEY NOT NULL UNIQUE AUTO_INCREMENT,
+	name VARCHAR(50) NOT NULL UNIQUE,
+	address VARBINARY(255) NOT NULL
+);
+
+create table student_photo(
+	id INT PRIMARY KEY NOT NULL UNIQUE AUTO_INCREMENT,
+	name VARCHAR(50) NOT NULL UNIQUE,
+	filename VARCHAR(100) NOT NULL,
+	filedata MEDIUMBLOB NOT NULL
+);
+
+create table student_basic_innodb(
+	id INT PRIMARY KEY NOT NULL UNIQUE AUTO_INCREMENT,
+	name VARCHAR(50) NOT NULL UNIQUE,
+	age INT(3) UNSIGNED NOT NULL,
+	score DOUBLE(5,2) UNSIGNED NOT NULL,
+	description VARCHAR(255)
+) ENGINE=InnoDB;
+
+
+delimiter //
+create procedure my_count_proc (IN scorevalue INT, OUT no INT)
+BEGIN
+	SELECT count(*) INTO no from student_basic where score >= scorevalue;
+end
+//
+delimiter ;
+
+delimiter //
+create procedure my_count_proc1 (OUT no INT)
+BEGIN
+	SELECT count(*) INTO no from student_basic;
+end
+//
+delimiter ;
+
+delimiter //
+create procedure my_insert_proc()
+BEGIN
+	INSERT INTO student_basic (name, age, score) VALUES ('testproc', 18, 81);
+end
+//
+delimiter ;
+
+delimiter //
+create procedure my_insert_proc1(IN agevalue INT)
+BEGIN
+	INSERT INTO student_basic (name, age, score) VALUES ('testproc1', agevalue, 81);
+end
+//
+delimiter ;
+
+INSERT INTO student_basic (name, age, score, description) VALUES ('marry', 18, 85.5, 'I am a girl!');
+INSERT INTO student_basic (name, age, score, description) VALUES ('john', 17, 78, 'I am a player!');
+INSERT INTO student_basic (name, age, score, description) VALUES ('wade', 18, 90, 'I come from England!');
+INSERT INTO student_basic (name, age, score, description) VALUES ('hanmeimei', 18, 92, 'I am a chinese!');
+
+INSERT INTO student_basic_innodb (name, age, score, description) VALUES ('marry', 18, 85.5, 'I am a girl!');
+INSERT INTO student_basic_innodb (name, age, score, description) VALUES ('john', 17, 78, 'I am a player!');
+INSERT INTO student_basic_innodb (name, age, score, description) VALUES ('wade', 18, 90, 'I come from England!');
+INSERT INTO student_basic_innodb (name, age, score, description) VALUES ('hanmeimei', 18, 92, 'I am a chinese!');

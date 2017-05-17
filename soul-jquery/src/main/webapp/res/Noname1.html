@@ -1,0 +1,119 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+    <title>New Document </title>
+    <style type="text/css">
+        .hideEle
+        {
+            display: none;
+        }
+    </style>
+
+  <script type="text/javascript" src="res/js/jquery-1.7.1.min.js"></script>
+
+</head>
+<body>
+    <br>
+    <br>
+      <h4>
+        User</h4>
+    <form action="www.163.com" method="post" id="form" onsubmit="at()">
+    <table border="1" width="600" id='tb'>
+        <tbody>
+            <tr>
+                <th width='300'>
+                    学号
+                </th>
+                <th>
+                    操作
+                </th>
+            </tr>
+            <tr>
+                <td>
+                    000001
+                </td>
+                <th>
+                    <div>
+                        <a href="#" class="edit">编辑</a>|<a href="#" class="remove">删除</a></div>
+                    <div class="hideEle">
+                        <a href="#" class='save'>保存</a>|<a href="#" class="cancel">取消</a></div>
+                </th>
+            </tr>
+            <tr>
+                <td>
+                    000002
+                </td>
+                <th>
+                    <div>
+                        <a href="#" class="edit">编辑</a>|<a href="#" class="remove">删除</a></div>
+                    <div class="hideEle">
+                        <a href="#" class='save'>保存</a>|<a href="#" class="cancel">取消</a></div>
+                </th>
+            </tr>
+        </tbody>
+    </table>
+    </form>
+</body>
+
+<script type="text/javascript">
+
+    function trim(str) { //删除左右两端的空格
+        return str.replace(/(^\s*)|(\s*$)/g, "");
+    }
+
+    $(function() {
+        $("#tb tr:gt(0)").each(function() {
+            var firstTd = $(this).children(":eq(0)");
+            var text = trim(firstTd.html());
+            firstTd.html($("<span class='oldContent'></span>").text(text));
+            $("<input type='text' class='update  hideEle' />").val(text).appendTo(firstTd);
+        });
+        $("a.edit").click(function(e) { return edit(e); });
+        $("a.remove").click(function(e) { return remove(e); });
+        $("a.save").click(function(e) { return save(e); });
+        $("a.cancel").click(function(e) { return cancel(e); });
+    });
+
+    function edit(btn) {
+        btn = btn.srcElement || btn.target;
+        $(btn).parent().hide();          //编辑，删除所在的层隐藏
+        $(btn).parent().next().show();   //保存，取消所在的层显示
+        var secTd = $(btn).closest("th");
+        var firstTd = secTd.prev();            //取得 第一格
+        var text = firstTd.html();
+        var text = firstTd.find(".oldContent").hide().html();
+        firstTd.find(".update").show().val(text);
+        return false;
+    }
+
+    function remove(btn) {
+        btn = btn.srcElement || btn.target;
+        $(btn).parents("tr").remove();
+        return false;
+    }
+
+    function save(btn) {
+        btn = btn.srcElement || btn.target;
+        $(btn).parent().hide();
+        $(btn).parent().prev().show();
+        var secTd = $(btn).closest("th");
+        var firstTd = secTd.prev();            //取得 第一格
+        var text = firstTd.find(".update").hide().val();
+        firstTd.find(".oldContent").show().html(text);
+        return false;
+    }
+
+    function cancel(btn) {
+        btn = btn.srcElement || btn.target;
+        $(btn).parent().hide();
+        $(btn).parent().prev().show();
+        var secTd = $(btn).closest("th");
+        var firstTd = secTd.prev();            //取得 第一格
+        firstTd.find(".oldContent").show();
+        firstTd.find(".update").hide();
+        return false;
+    }
+
+</script>
+
+</html>

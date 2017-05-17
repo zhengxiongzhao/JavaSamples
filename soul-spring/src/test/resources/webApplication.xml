@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+	<!--
+	1、  DispatcherServlet在web.xml中的部署描述，从而拦截请求到Spring Web MVC
+	2、  HandlerMapping的配置，从而将请求映射到处理器
+	3、  HandlerAdapter的配置，从而支持多种类型的处理器
+	4、  ViewResolver的配置，从而将逻辑视图名解析为具体视图技术
+	5、处理器（页面控制器）的配置，从而进行功能处理
+	-->
+	<!-- BeanNameUrlHandlerMapping：表示将请求的URL和Bean名字映射 -->
+	<bean class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping" />
+	
+	<!-- SimpleControllerHandlerAdapter：表示所有实现了org.springframework.web.servlet.mvc.Controller接口的Bean
+	可以作为Spring Web MVC中的处理器。如果需要其他类型的处理器可以通过实现HadlerAdapter来解决。 -->
+	<bean class="org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter" />
+	
+	<!-- 
+		InternalResourceViewResolver：用于支持Servlet、JSP视图解析； 
+	 	viewClass：JstlView表示JSP模板页面需要使用JSTL标签库，classpath中必须包含jstl的相关jar包； 
+	 	prefix和suffix：查找视图页面的前缀和后缀
+	-->
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+       <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>  
+       	<property name="prefix" value="/jsp/" ></property>
+ 	    <property name="suffix" value=".jsp"/>  
+ 	     <property name="order" value="1"></property>  
+    </bean>
+	
+	<import resource="controller.xml"/> 
+
+</beans>

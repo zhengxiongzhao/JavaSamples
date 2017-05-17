@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/aop
+           http://www.springframework.org/schema/aop/spring-aop.xsd
+       ">
+	
+     
+     <!-- 定义切面类 -->
+     <bean id="xmlAspact" class="com.cihunknown.spring.aop.simple.XMLAspact" ></bean>
+     <!-- 定义目标类 -->
+     <bean id="xmlService" class="com.cihunknown.spring.aop.simple.XMLService" ></bean>
+     <aop:config>
+    	 <!-- 配置切入点 -->
+    	 <aop:advisor advice-ref=""/>
+     	<aop:pointcut expression="execution(* com.jason.spring.aop.simple.*.*(..))" id="pointcat"/>
+     	<aop:aspect ref="xmlAspact" >
+     		<aop:before method="beforeAdvice(java.lang.String)" pointcut="execution(* com.cihunknown.spring.aop.simple.XMLService.*(..)) and args(param)"  arg-names="param" />
+     		<!-- 注意返回参数 -->
+     		<!-- 环绕通知  注意参数NullPointExcption -->
+     		<aop:after method="afterFanitionAdvice" pointcut-ref="pointcat"  />
+     		<aop:after-returning method="afterReturning" pointcut-ref="pointcat" returning="value" />
+     		<aop:after-throwing method="afterThrowsException" pointcut-ref="pointcat" throwing="error" />
+     		<aop:around  method="aroundAdvice" pointcut-ref="pointcat"  />
+     		 <aop:declare-parents types-matching="" implement-interface=""/>
+     	</aop:aspect>
+     </aop:config>
+</beans>

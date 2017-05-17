@@ -1,0 +1,106 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+ "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+ "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+
+	<session-factory>
+
+		<!-- Database connection settings -->
+		<property name="connection.driver_class">
+			com.mysql.jdbc.Driver
+        </property>
+		<property name="connection.url">
+			jdbc:mysql://localhost:3306/jasondata
+        </property>
+		<property name="connection.username">
+			root
+        </property>
+		<property name="connection.password">
+			root
+        </property>
+
+		<!-- JDBC connection pool (use the built-in) <property name="connection.pool_size">1</property> -->
+
+		<!-- SQL dialect -->
+		<property name="dialect">
+			org.hibernate.dialect.MySQL5Dialect
+        </property>
+
+		<!-- Enable Hibernate's automatic session context management <property 
+			name="current_session_context_class">thread</property> -->
+
+		<!-- Disable the second-level cache <property name="cache.provider_class">org.hibernate.cache.internal.NoCacheProvider</property> -->
+		<!-- Echo all executed SQL to stdout -->
+		<property name="show_sql">
+			true
+        </property>
+
+		<property name="format_sql">
+			true
+		</property>
+
+
+		<!-- Drop and re-create the database schema on startup <property name="hbm2ddl.auto">create</property> -->
+
+		<!-- <mapping resource="org/hibernate/tutorial/domain/Event.hbm.xml"/> 
+			<mapping class="org.jasonHibernate.model.Stock"></mapping> <mapping class="org.jasonHibernate.model.CompositeKey"></mapping> 
+			<mapping class="org.jasonHibernate.model.LockVersion"></mapping> -->
+		
+		
+		<!--一对一双向
+		<mapping class="org.jasonHibernate.model.onetoone.bidirectional.User" />
+		<mapping class="org.jasonHibernate.model.onetoone.bidirectional.Dream" />
+		-->
+		
+		<!--一对一单向
+		<mapping class="org.jasonHibernate.model.onetoone.unidirectional.User" /> 
+		<mapping class="org.jasonHibernate.model.onetoone.unidirectional.Dream" />
+		--> 
+		<!-- 一对一双向主键关联
+		<mapping class="org.jasonHibernate.model.onetoone.primary.User" /> 
+		<mapping class="org.jasonHibernate.model.onetoone.primary.Dream" />-->
+		 
+		 <!-- 一对一三方表关联
+		<mapping class="org.jasonHibernate.model.onetoone.relevancetable.User" /> 
+		<mapping class="org.jasonHibernate.model.onetoone.relevancetable.Dream" />-->
+		 
+		 <!-- 复合主键关联
+		 <mapping class="org.jasonHibernate.model.composite.User" /> 
+		<mapping class="org.jasonHibernate.model.composite.Dream" /> -->
+		
+		<!-- 组件映射
+		<mapping class="org.jasonHibernate.model.composition.User" /> -->
+	
+		<!-- 多对一
+		<mapping class="org.jasonHibernate.model.manytoone.unidirectional.User" /> 
+		<mapping class="org.jasonHibernate.model.manytoone.unidirectional.Dream" />
+		 -->
+		 
+		 <!-- 一对多 
+		<mapping class="org.jasonHibernate.model.onetomany.unidricational.User" /> 
+		<mapping class="org.jasonHibernate.model.onetomany.unidricational.Dream" /> 
+		 -->
+		  
+		 <!----> 
+		<mapping class="com.jason.hibernate.model.onetomany.bidricational.User" /> 
+		<mapping class="com.jason.hibernate.model.onetomany.bidricational.Dream" />
+		
+		
+		<!-- 多对多 
+		<mapping class="org.jasonHibernate.model.manytomany.undirectional.User" /> 
+		<mapping class="org.jasonHibernate.model.manytomany.undirectional.Dream" />
+		
+		
+		<mapping class="org.jasonHibernate.model.manytomany.bidirectional.User" /> 
+		<mapping class="org.jasonHibernate.model.manytomany.bidirectional.Dream" />
+		-->
+		
+		
+		 <!--树形结构 
+		 <mapping class="org.jasonHibernate.model.tree.Province" />
+		  -->
+	</session-factory>
+
+</hibernate-configuration>

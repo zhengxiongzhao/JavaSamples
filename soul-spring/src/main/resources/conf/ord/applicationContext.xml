@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd">
+		
+		
+	
+	  <!-- 【配置映射处理器】 -->  
+    <!-- SpringMVC自带的映射处理器均实现了Spring的Ordered接口，这意味着我们可以在应用系统中声明多个处理器映射 -->  
+    <!-- 并且可以设置它们的优先级，这主要体现在order属性上，其值越小，则对应的该映射处理器的优先级越高 -->  
+    <!-- 本例中，SimpleUrlHandlerMapping的order值比BeanNameUrlHandlerMapping的小 -->  
+    <!-- 这意味着DispatcherServlet在映射URL的时候，首先会咨询SimpleUrlHandlerMapping -->  
+    <!-- 只有在SimpleUrlHandlerMapping无法返回结果时，才咨询BeanNameUrlHandlerMapping -->
+    <!-- (spring默认的请求控制器映射)：根据控制器的名称将控制器映射到URL -->
+    <bean id="beanNameUrlMapping" class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping">  
+        <property name="order" value="1"/>  
+    </bean>  
+     <!-- DispatcherServlet使用的默认处理器映射是BeanNameUrlHandlerMapping，它使用URL样式的名字 -->  
+     <bean name="/cihController.htm" class="com.cihunknown.web.servlet.mvc.controller.impl.CIHController" />
+     <bean name="/cihAbstractController.htm" class="com.cihunknown.web.servlet.mvc.controller.impl.CIHAbstractController" >
+     	<property name="cacheSeconds" value="120" ></property>
+     </bean>
+    
+    
+    
+    <!-- 用上下文配置文件中定义的属性结合将控制器映射到URL -->
+    <bean id="simpleUrlMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">  
+        <property name="order" value="0"/>  
+        <property name="mappings">  
+            <props>  
+            	<prop key="/cihController.htm">cihController</prop>
+            </props>  
+        </property>  
+    </bean>  	
+	 <!-- 这里的id="userController"对应的是<bean id="simpleUrlMapping">中的<prop>里面的value -->  
+    <bean id="cihController" class="com.cihunknown.web.servlet.mvc.controller.impl.CIHController" />
+     
+     
+     
+     <bean name="/jsp/*" class="com.cihunknown.web.servlet.mvc.controller.impl.CIHAbstractUrlViewController" ></bean>
+     
+     
+     <!-- ParameterizableViewController 它纯粹是一个重定向类，仅此而已，无所不及 -->
+     <bean name="/parameter.htm" class="com.cihunknown.web.servlet.mvc.controller.impl.CIHParameterizableViewController" >
+		<property name="viewName" value="home" ></property>
+     </bean>
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+	<!-- 【配置视图解析器】 -->  
+    <!-- InternalResourceViewResolver会在ModelAndView返回的视图名前加上prefix指定的前缀，再在最后加上suffix指定的后缀 -->  
+    <!-- 由于simpleController返回的ModelAndView中的视图名是simpleController，故该视图解析器将在/WEB-INF/jsp/simpleController.jsp处查找视图 -->  
+	 <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" >
+	 		<property name="prefix" value="/jsp/"   />
+	 		<property name="suffix" value=".jsp" />
+	 </bean>
+	 
+	 <bean class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver" >
+	 	<property name="prefix" value="/" />
+	 	<property name="suffix" value=".ftl" />
+	 </bean>
+	 
+	 
+</beans>

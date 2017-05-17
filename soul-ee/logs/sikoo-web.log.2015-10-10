@@ -1,0 +1,16 @@
+[2013-08-18 12:42:39,636] [] ERROR [com.jason.web.exceptions.ExceptionHandler] - com.jason.web.exceptions.BusinessException: dao12
+[2013-08-18 12:42:43,353] [] ERROR [com.jason.web.exceptions.ExceptionHandler] - com.jason.web.exceptions.BusinessException: service11
+[2013-08-18 12:42:46,352] [] ERROR [com.jason.web.exceptions.ExceptionHandler] - com.jason.web.exceptions.ParameterException: Service Parameter Error
+[2013-08-18 12:42:48,152] [] ERROR [com.jason.web.exceptions.ExceptionHandler] - com.jason.web.exceptions.ParameterException: Dao Parameter Error
+[2013-08-18 12:42:52,204] [] ERROR [com.jason.web.exceptions.ExceptionHandler] - com.jason.web.exceptions.ParameterException: Service Parameter Error
+[2013-08-18 12:43:01,792] [] ERROR [com.jason.web.exceptions.ExceptionHandler] - com.jason.web.exceptions.BusinessException: controller10
+[2013-08-18 12:43:05,288] [] ERROR [com.jason.web.exceptions.ExceptionHandler] - java.lang.NullPointerException
+[2013-08-18 12:44:27,908] [] ERROR [com.jason.web.exceptions.ExceptionHandler] - com.jason.web.exceptions.BusinessException: dao12
+[2013-08-18 12:44:38,817] [] ERROR [com.jason.web.exceptions.ExceptionHandler] - com.jason.web.exceptions.ParameterException: Dao Parameter Error
+[2013-08-18 12:44:42,321] [] ERROR [com.jason.web.exceptions.ExceptionHandler] - java.lang.NullPointerException
+[2013-08-18 12:44:48,888] [] ERROR [com.jason.web.exceptions.ExceptionHandler] - com.jason.web.exceptions.BusinessException: service11
+[2013-08-18 12:44:50,767] [] ERROR [com.jason.web.exceptions.ExceptionHandler] - com.jason.web.exceptions.ParameterException: Service Parameter Error
+[2013-08-18 12:44:52,784] [] ERROR [com.jason.web.exceptions.ExceptionHandler] - java.lang.NullPointerException
+[2013-08-18 12:44:55,000] [] ERROR [com.jason.web.exceptions.ExceptionHandler] - com.jason.web.exceptions.BusinessException: controller10
+[2013-08-18 12:44:58,441] [] ERROR [com.jason.web.exceptions.ExceptionHandler] - com.jason.web.exceptions.ParameterException: Controller Parameter Error
+[2013-08-18 12:45:02,071] [] ERROR [com.jason.web.exceptions.ExceptionHandler] - java.lang.NullPointerException

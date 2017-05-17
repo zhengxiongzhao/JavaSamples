@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+	http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+	<display-name></display-name>
+
+
+	<!-- 使用ContextLoaderListener配置时，需要告诉它Spring配置文件的位置 -->  
+    <!-- 如果没有指定，上下文载入器会在/WEB-INF/applicationContext.xml中找Spring配置文件 -->  
+    <!-- 我们可以通过在Servlet上下文中设置contextConfigLocation参数，来为上下文载入器指定一个或多个Spring配置文件 -->  
+    <!-- 注意：contextConfigLocation参数是一个用逗号分隔的路径列表，其路径是相对于Web系统的根路径的   
+    <context-param>  
+        <param-name>contextConfigLocation</param-name>  
+        <param-value>/WEB-INF/springmvc-servlet.xml, classpath:applicationContext-*.xml</param-value>  
+    </context-param>  
+    <listener>  
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>  
+    </listener>  -->
+    
+    
+    <!-- SpringMVC的前端控制器 -->  
+    <!-- 当DispatcherServlet载入后，它将从一个XML文件中载入Spring的应用上下文，该XML文件的名字取决于<servlet-name> -->  
+    <!-- 这里DispatcherServlet将试图从一个叫做springmvc-servlet.xml的文件中载入应用上下文，其默认位于WEB-INF目录下 -->  
+    <!-- 所以ContextLoaderListener参数值也可写成<param-value>classpath:applicationContext-*.xml</param-value> -->  
+	<servlet>
+		<servlet-name>Review</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>classpath:applicationContext.xml</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>Review</servlet-name>
+		<url-pattern>*.htm</url-pattern>
+	</servlet-mapping>
+
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
+</web-app>
